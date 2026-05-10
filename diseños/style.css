@@ -1,0 +1,60 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url('/diseños/Imagenes/Mascotas.jfif');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.contenedor{
+    width: 400px;
+    margin: 100px auto;
+    background-color: lightpink;
+    padding: 20px;
+    text-align: center;
+    border-radius: 20px;
+}
+
+input{
+    display: block;
+    padding:10px;
+    border-radius: 10px;
+    border-style: hidden;
+    width: 90%;    
+}
+
+button.IS{
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 10px;
+    border-style: hidden;
+    background-color: white;
+}
+
+button.CC{
+    margin-left: 20px;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 10px;
+    border-style: none;
+    background-color: white;
+}
+
+button.OC{
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    border-style: none;
+    background-color: white;
+    cursor: pointer;
+}
+
+button.Volver{
+    margin-right: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    border-style: none;
+    background-color: white;
+    cursor: pointer;
+}
