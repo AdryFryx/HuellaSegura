@@ -1,16 +1,18 @@
 body{
     font-family: Arial, Helvetica, sans-serif;
-    background-image: url('/diseños/Imagenes/Mascotas.jfif');
+    background-image: url('../diseños/Imagenes/Mascotas.jfif');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
 }
-
+h1{
+    color: white;
+}
 .contenedor{
     width: 400px;
     margin: 100px auto;
-    background-color: lightpink;
+    background: linear-gradient(0deg,rgba(255, 230, 0, 0.253) 0%, rgb(224, 154, 3) 100%);
     padding: 20px;
     text-align: center;
     border-radius: 20px;
