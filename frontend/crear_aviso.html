@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HuellaSegura - Reportar Mascota</title>
+    <link rel="stylesheet" href="../diseños/style.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+</head>
+<body>
+    <nav>
+        <div class="brand">HuellaSegura 🐾</div>
+        <div class="nav-links">
+            <a href="index.html" style="color: var(--text-main);">Volver al Muro</a>
+        </div>
+    </nav>
+
+    <div class="contenedor">
+        <h1>Reportar Mascota 🐾</h1>
+        <p class="subtitle">Ingresa los datos para ayudar a encontrarla</p>
+        
+        <form id="crear-aviso-form">
+            <input type="text" id="mascota-nombre" placeholder="Nombre de la mascota (ej. Firulais)" required>
+            
+            <p style="text-align: left; margin-bottom: -10px; font-weight: 600; color: var(--text-main);">Haz clic en el mapa para marcar la ubicación exacta:</p>
+            <div id="form-map" style="height: 250px; width: 100%; border-radius: 12px; border: 1px solid #E2E8F0; z-index: 1;"></div>
+            
+            <input type="text" id="mascota-ubicacion" placeholder="Escribe el nombre del lugar (ej. Parque Central)" required>
+            <input type="hidden" id="mascota-lat">
+            <input type="hidden" id="mascota-lng">
+            
+            <p style="text-align: left; margin-bottom: -10px; font-weight: 600; color: var(--text-main);">Sube una foto de la mascota:</p>
+            
+            <div class="file-upload-wrapper">
+                <input type="file" id="mascota-foto" accept="image/*" class="file-input-hidden">
+                <label for="mascota-foto" class="file-upload-label">
+                    <span class="file-icon">📸</span>
+                    <span id="file-name">Haz clic para elegir una foto</span>
+                </label>
+            </div>
+            
+            <textarea id="mascota-desc" placeholder="Descripción (color, tamaño, collar, detalles...)" required></textarea>
+            
+            <p id="aviso-error" class="error-msg hidden"></p>
+            <button type="submit" class="btn-primary">Publicar Aviso</button>
+        </form>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = JSON.parse(localStorage.getItem('huellasegura_user'));
+            if (!user) {
+                window.location.href = 'Login.html';
+            }
+        });
+
+        // Lógica para cambiar el nombre del archivo seleccionado
+        document.getElementById('mascota-foto').addEventListener('change', function(e) {
+            const fileNameSpan = document.getElementById('file-name');
+            if (this.files && this.files.length > 0) {
+                fileNameSpan.textContent = this.files[0].name;
+                fileNameSpan.style.color = "var(--primary)";
+            } else {
+                fileNameSpan.textContent = 'Haz clic para elegir una foto';
+                fileNameSpan.style.color = "inherit";
+            }
+        });
+    </script>
+</body>
+</html>

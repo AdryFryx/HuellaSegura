@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HuellaSegura - Mapa</title>
+    <link rel="stylesheet" href="../diseños/style.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+</head>
+<body style="overflow: hidden;"> <!-- Evitar scroll en el mapa full screen -->
+    <nav>
+        <div class="brand">HuellaSegura 🐾</div>
+        <div class="nav-links">
+            <span id="user-greeting" style="font-weight: 600; color: var(--text-main);"></span>
+            <button class="btn-secondary" style="padding: 6px 15px; width: auto; margin-top: 0; font-size: 0.9rem;" onclick="logout()">Salir</button>
+        </div>
+    </nav>
+
+    <!-- Mapa Full Screen -->
+    <div class="map-wrapper">
+        <!-- UI Flotante Superior (Búsqueda y Filtros) -->
+        <div class="floating-ui-top">
+            <input type="text" class="search-bar" id="search-input" placeholder="🔍 Buscar por nombre o ubicación...">
+            <div class="filters-container">
+                <button class="chip active" onclick="setFilter('todos', this)">Todos</button>
+                <button class="chip" onclick="setFilter('perdido', this)">Perdidos</button>
+                <button class="chip" onclick="setFilter('encontrado', this)">Encontrados</button>
+                <button class="chip" onclick="setFilter('vet', this)">🏥 Veterinarias</button>
+            </div>
+        </div>
+
+        <div id="main-map"></div>
+
+        <!-- Botón Flotante para crear aviso -->
+        <a href="crear_aviso.html" class="fab">
+            <span style="font-size: 1.5rem; line-height: 1;">+</span> Reportar Mascota
+        </a>
+    </div>
+
+    <!-- Modal de Detalles y Comentarios -->
+    <div id="pet-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <div class="modal-body">
+                <!-- Mitad izquierda: Info de la mascota -->
+                <div class="modal-info" id="modal-info-container">
+                    <!-- Se llena con JS -->
+                </div>
+                
+                <!-- Mitad derecha: Comentarios -->
+                <div class="modal-comments">
+                    <h3>Comentarios y Pistas</h3>
+                    <div class="comments-list" id="comments-list">
+                        <!-- Comentarios se cargan aquí -->
+                    </div>
+                    <form id="comment-form" class="comment-form">
+                        <input type="text" id="comment-text" placeholder="Escribe un comentario..." required autocomplete="off">
+                        <button type="submit" class="btn-primary" style="width: auto;">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Verificar si el usuario está logueado
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = JSON.parse(localStorage.getItem('huellasegura_user'));
+            if (!user) {
+                window.location.href = 'Login.html';
+                return;
+            }
+            document.getElementById('user-greeting').textContent = `Hola, ${user.username}`;
+            loadMascotas();
+            
+            // Evento de búsqueda
+            document.getElementById('search-input').addEventListener('input', (e) => {
+                applyFilters();
+            });
+        });
+    </script>
+</body>
+</html>

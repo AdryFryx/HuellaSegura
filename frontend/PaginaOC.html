@@ -2,17 +2,22 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Olvido su contraseña</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HuellaSegura - Recuperar Contraseña</title>
     <link rel="stylesheet" href="../diseños/style.css">
+</head>
 <body>
     <div class="contenedor">
-        <h1>Resetear contraseña</h1>
-        <input type="email" placeholder="Ingrese su correo">
-        <br>
-        <input type="number" placeholder="Ingrese su codigo"><br>
-        <br>
-        <a href="Login.html""><button type="submit" id="volver" class="Volver">Volver</button></a><button type="submit" id="is" class="IS">Iniciar Sesión</button>
+        <h1>Recuperar Acceso 🐾</h1>
+        <p class="subtitle">Ingresa tu correo para recibir un código</p>
+        
+        <form>
+            <input type="email" placeholder="Correo electrónico" required>
+            <input type="number" placeholder="Código de verificación" class="hidden" id="codigo-input">
+            <button type="submit" class="btn-primary">Enviar Código</button>
+        </form>
+        
+        <a href="Login.html"><button type="button" class="btn-secondary">Volver al Inicio</button></a>
     </div>
 </body>
-</head>
 </html>

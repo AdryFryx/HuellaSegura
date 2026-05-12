@@ -2,18 +2,51 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Login de HuellaSegura</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HuellaSegura - Iniciar Sesión</title>
     <link rel="stylesheet" href="../diseños/style.css">
 </head>
 <body>
-    <div class="contenedor">
-        <h1>HuellaSegura</h1>
-        <br>
-        <input type="text" placeholder="Ingrese nombre de usuario">
-        <br>
-        <input type="password" placeholder="Ingrese su contraseña"><br><a href="PaginaOC.html"><button type="button" id="OC" class="OC">¿Olvido su contraseña?</button></a>
-        <br>
-        <button type="submit" id="IS" class="IS">Iniciar Sesión</button><button type="submit" id="CC" class="CC">Crear Cuenta</button>
+    <div class="contenedor" id="login-container">
+        <h1>HuellaSegura 🐾</h1>
+        <p class="subtitle">Encuentra a tu mejor amigo</p>
+        
+        <form id="login-form">
+            <input type="text" id="login-username" placeholder="Nombre de usuario" required>
+            <input type="password" id="login-password" placeholder="Contraseña" required>
+            <div class="link-container">
+                <a href="PaginaOC.html">¿Olvidaste tu contraseña?</a>
+            </div>
+            <p id="login-error" class="error-msg hidden"></p>
+            <button type="submit" class="btn-primary">Iniciar Sesión</button>
+        </form>
+        
+        <button type="button" class="btn-secondary" onclick="toggleForms()">Crear Cuenta Nueva</button>
     </div>
+
+    <div class="contenedor hidden" id="register-container">
+        <h1>Únete a Nosotros 🐾</h1>
+        <p class="subtitle">Crea una cuenta para ayudar</p>
+        
+        <form id="register-form">
+            <input type="text" id="reg-username" placeholder="Nombre de usuario" required>
+            <input type="email" id="reg-email" placeholder="Correo electrónico" required>
+            <input type="password" id="reg-password" placeholder="Contraseña" required>
+            <p id="reg-error" class="error-msg hidden"></p>
+            <button type="submit" class="btn-primary">Registrarse</button>
+        </form>
+        
+        <button type="button" class="btn-secondary" onclick="toggleForms()">Volver al Login</button>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        function toggleForms() {
+            document.getElementById('login-container').classList.toggle('hidden');
+            document.getElementById('register-container').classList.toggle('hidden');
+            document.getElementById('login-error').classList.add('hidden');
+            document.getElementById('reg-error').classList.add('hidden');
+        }
+    </script>
 </body>
 </html>
